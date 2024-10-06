@@ -25,4 +25,8 @@ public class Book {
             throw new BusinessException(BOOK_ID_NULL_OR_EMPTY, "Please fill in book id");
         }
     }
+
+    public void updateCategory(String category) {
+        this.category = category;
+    }
 }
