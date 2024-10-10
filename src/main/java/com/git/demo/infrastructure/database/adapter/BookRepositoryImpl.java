@@ -22,4 +22,17 @@ public class BookRepositoryImpl implements BookRepository {
         List<BookSql> booksByCategory = bookJpaRepository.findBookByCategory(category);
         return bookSqlMapper.fromSqlListToDomainList(booksByCategory);
     }
+
+    @Override
+    public Book findBookBy(String bookId) {
+        BookSql bookSql = bookJpaRepository.findById(bookId).get();
+        return bookSqlMapper.fromSqlToDomain(bookSql);
+    }
+
+
+    @Override
+    public Book updateBook(Book book) {
+        BookSql savedBook = bookJpaRepository.save(bookSqlMapper.fromDomainToSql(book));
+        return bookSqlMapper.fromSqlToDomain(savedBook);
+    }
 }
